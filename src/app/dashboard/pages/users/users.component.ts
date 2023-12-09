@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { NavbarTitleService } from '../../services/navbar-title.service';
 
 @Component({
   selector: 'app-users',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class UsersComponent {
 
+  navService = inject(NavbarTitleService);
+
+  constructor(){
+    this.navService.setNavbarTitle('Users');
+  }
 }

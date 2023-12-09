@@ -9,6 +9,7 @@ import { TeamsComponent } from './pages/teams/teams.component';
 import { RolesComponent } from './pages/roles/roles.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
     TeamsComponent,
     RolesComponent,
     SideNavComponent,
-    DashboardLayoutComponent
+    DashboardLayoutComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
