@@ -1,1 +1,62 @@
-<p>projects works!</p>
+
+
+<div class="container mt-2 content">
+      <div class="filter-container">
+        <div class="search-container">
+            <div class="filter-grid-container">
+                <div class="filter-grid">
+                    <mat-form-field>
+                        <mat-label>Filter</mat-label>
+                        <input matInput placeholder="You can search by Name" #input>
+                    </mat-form-field>
+                </div>
+                <div class="actions">
+                    <button class="btn search-button" (click)="search(input.value)">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="d-flex align-items-stretch button-group mt-4 pt-2 mb-2">
+      <a class="btn add-button float-end" target="_blank" (click)="openDialog()">
+          Add Project
+      </a>
+  </div>
+    
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="projectList" matSort (matSortChange)="applySort($event)">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header data-color="red">Name</th>
+          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="isActive">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Is Active</th>
+          <td mat-cell *matCellDef="let row">{{ row.isActive }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let row">Edit, Acitve, Inactive</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No data matching the filter.
+          </td>
+        </tr>
+      </table>
+    
+      <mat-paginator
+      #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="totalRows"
+      pageSize="10" [disabled]="false" [showFirstLastButtons]="true" [hidePageSize]="true"
+      [pageIndex]="0" aria-label="Select page"
+      ></mat-paginator>
+    </div>
+</div>

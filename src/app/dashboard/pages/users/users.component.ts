@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { NavbarTitleService } from '../../services/navbar-title.service';
+import { NavbarTitleService } from '../../services/shared/navbar-title.service';
 
 @Component({
   selector: 'app-users',

@@ -3728,3 +3728,35 @@
     }
   }
   
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::-webkit-scrollbar{
+  width: 15px;
+}
+
+::-webkit-scrollbar-track{
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb{
+  background: red;
+  border-radius: 10px;
+  opacity: .33;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: darkgrey;
+}
+
+::-webkit-scrollbar-corner{
+  background-color: transparent;
+}
+
+.navbar>.container-fluid{
+  height: 5.5vh;
+}
+
+.filter-container{
+  margin-top: 80px
+}

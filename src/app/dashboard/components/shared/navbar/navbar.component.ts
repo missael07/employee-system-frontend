@@ -1,5 +1,5 @@
 import { Component, ElementRef, computed, inject } from '@angular/core';
-import { NavbarTitleService } from 'src/app/dashboard/services/navbar-title.service';
+import { NavbarTitleService } from 'src/app/dashboard/services/shared/navbar-title.service';
 
 @Component({
   selector: 'app-navbar',
