@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Project } from '../../interfaces/projects/project.interface';
 import { ProjectService } from '../../services/projects/project.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
+import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
+import { ProjectComponent } from './project/project.component';
 
 @Component({
   selector: 'app-projects',
@@ -16,9 +18,11 @@ export class ProjectsComponent {
   navService = inject(NavbarTitleService);
   private _projectService = inject(ProjectService);
   private _loadingService = inject(LoadingService);
+  private _dialogService = inject(DialogService);
+
   public isLoading = computed(() => this._loadingService.isLoading());
 
-  displayedColumns: string[] = ['name', 'isActive', 'options'];
+  displayedColumns: string[] = ['name', 'isActive','createdDate', 'options'];
   dataSource!: MatTableDataSource<Project>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -31,7 +35,7 @@ export class ProjectsComponent {
   }
 
   search(searchValue: string) {
-    this._setFilterConfig(0,10,'name','desc', searchValue)
+    this._setFilterConfig(0,10,'createdAt','desc', searchValue)
     this._getProjectData();
   }
 
@@ -45,11 +49,24 @@ export class ProjectsComponent {
     this._getProjectData();
   }
 
-  openDialog(){
-
+  openDialog(data: Project = {name: '', isActive: true}){
+    this._dialogService.openDialog(ProjectComponent,data).subscribe({
+      next: () => {
+        this._getProjectData();
+      }
+    })
   }
 
-  private _setFilterConfig(pageIndex: number, pageSize: number, sortActive: string = 'name', sortDirection: 'asc' | 'desc' = 'desc', filterBy: string = '') {
+  
+ changeStatus(id: string, status: boolean) {
+    this._projectService.chanceStatus(id, status).subscribe({
+      next: () => {
+        this._getProjectData();
+      }
+    })
+ }
+
+  private _setFilterConfig(pageIndex: number, pageSize: number, sortActive: string = 'createdAt', sortDirection: 'asc' | 'desc' = 'desc', filterBy: string = '') {
     this._projectService.filterConfig.set({
       pageIndex: pageIndex,
       pageSize: pageSize,
@@ -63,9 +80,7 @@ export class ProjectsComponent {
     this._loadingService.loadingOn();
     this._projectService.getProjectsList().subscribe({
       next: () => {
-        setTimeout(() => {
           this._loadingService.loadingOff();
-        }, 3500);
       },
       error: (message) => console.log(message),
     });

@@ -12,6 +12,7 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
+import { ProjectComponent } from './pages/projects/project/project.component';
 
 
 
@@ -23,7 +24,8 @@ import { SharedModule } from '../shared/shared.module';
     RolesComponent,
     SideNavComponent,
     DashboardLayoutComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProjectComponent
   ],
   imports: [
     CommonModule,

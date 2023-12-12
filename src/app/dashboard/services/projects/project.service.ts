@@ -26,10 +26,25 @@ export class ProjectService {
     this._totalRows.set(totalRows);
     return true;
   }
+
   getProjectsList(): Observable<boolean> {
     return this._http.post<ProjectResponse>(`${this.baseUrl}/projects/GetPaginatedProjects`, this.filterConfig()).pipe(
       map( ({totalRows, data}) => this._setProjectsList(totalRows, data)),
       catchError( err => throwError( () => err.error.message ))
     );
+  }
+
+  createProject(project: any): Observable<Project> {
+    return this._http.post<Project>(`${this.baseUrl}/projects`, project);
+  }
+  
+  updateProject(id: string, project: any): Observable<Project> {
+    return this._http.put<Project>(`${this.baseUrl}/projects/${id}`, project);
+  }
+
+  chanceStatus(id: string, status: boolean){
+    return this._http.delete<Project>(`${this.baseUrl}/projects/${id}`,{
+      body: {status}
+    });
   }
 }

@@ -7,9 +7,22 @@ table {
   width: 100%;
 }
 th {
-  color: #fff;
-  background-color: red !important;
-  opacity: .6;
+  background-color: #FB404B !important;
+  background-color: -moz-linear-gradient(top, #FB404B 0%, #bb0502 100%) !important;
+  background-color: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #FB404B),
+    color-stop(100%, #bb0502)
+  ) !important;
+  background-color: -webkit-linear-gradient(top, #FB404B 0%, #bb0502 100%) !important;
+  background-color: -o-linear-gradient(top, #FB404B 0%, #bb0502 100%) !important;
+  background-color: -ms-linear-gradient(top, #FB404B 0%, #bb0502 100%) ;
+  background-color: linear-gradient(to bottom, #FB404B 0%, #bb0502 100%) !important;
+  background-size: 150% 150%;
+
+  color: #fff !important;
 }
 
 td, th {
@@ -63,9 +76,17 @@ td, th {
   }
 }
 
+.id-link {
+  cursor: pointer;
+  color: black;
+}
 
-.search-button,
-.add-button {
-  color: red;
-  border-color: red;
+.open {
+  color: green !important;
+  cursor: pointer;
+}
+
+.close {
+  color: red !important;
+  cursor: pointer;
 }
