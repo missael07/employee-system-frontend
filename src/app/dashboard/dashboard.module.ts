@@ -13,6 +13,9 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProjectComponent } from './pages/projects/project/project.component';
+import { FilterComponent } from './components/shared/filter/filter.component';
+import { TableContainerComponent } from './components/shared/table-container/table-container.component';
+import { TeamComponent } from './pages/teams/team/team.component';
 
 
 
@@ -25,7 +28,10 @@ import { ProjectComponent } from './pages/projects/project/project.component';
     SideNavComponent,
     DashboardLayoutComponent,
     NavbarComponent,
-    ProjectComponent
+    ProjectComponent,
+    FilterComponent,
+    TableContainerComponent,
+    TeamComponent
   ],
   imports: [
     CommonModule,

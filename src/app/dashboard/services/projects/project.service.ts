@@ -27,6 +27,9 @@ export class ProjectService {
     return true;
   }
 
+  getAllProjects() {
+    return this._http.get<Project[]>(`${this.baseUrl}/projects/`,);
+  }
   getProjectsList(): Observable<boolean> {
     return this._http.post<ProjectResponse>(`${this.baseUrl}/projects/GetPaginatedProjects`, this.filterConfig()).pipe(
       map( ({totalRows, data}) => this._setProjectsList(totalRows, data)),

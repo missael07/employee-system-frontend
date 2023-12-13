@@ -1,0 +1,23 @@
+<div class="filter-container">
+    <div class="search-container">
+        <div class="filter-grid-container">
+            <div class="filter-grid">
+                <mat-form-field>
+                    <mat-label>Filter</mat-label>
+                    <input matInput [placeholder]="placeholder" #input>
+                </mat-form-field>
+            </div>
+            <div class="actions">
+                <button class="btn action-button" (click)="search(input.value)">
+                    Search
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<div class="d-flex align-items-stretch button-group mt-4 pt-2 mb-2">
+  <a class="btn action-button float-end" target="_blank" (click)="addItem()">
+        {{ btnText }}
+  </a>
+</div>

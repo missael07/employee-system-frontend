@@ -16,10 +16,6 @@ export class ProjectFormFactoryService {
 
   public projectForm = computed( () => this._projectForm());
 
-  constructor() {
-    console.log(this._projectForm())
-  }
-
   populateProjectForm(data: Project){
     this._projectForm().patchValue(data);
   }

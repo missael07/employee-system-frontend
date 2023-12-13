@@ -24,8 +24,7 @@ private _snackBar = inject(MatSnackBar)
 public title = computed( () => this._id() ? 'Edit Project' : 'Add Project' );
 public buttonText = computed( () => this._id() ? 'Save' : 'Create' );
 public projectForm = computed ( () => this._projectFormService.projectForm());
-public isActiveControl = computed( () => this.projectForm().get('isActive') as FormControl);
-public disabledButton = signal<boolean>(this.projectForm().invalid);
+
  /**
   *
   */
@@ -64,7 +63,6 @@ public disabledButton = signal<boolean>(this.projectForm().invalid);
       this.isSaving = false;
     },
     error: (err) => {
-      console.log(err);
       this.openSnackBar(err.error.message);
       this.isSaving = false;
     }
@@ -83,7 +81,6 @@ public disabledButton = signal<boolean>(this.projectForm().invalid);
       this.isSaving = false;
     },
     error: (err) => {
-      console.log(err);
       this.openSnackBar(err.error.message);
       this.isSaving = false;
     }
@@ -91,7 +88,6 @@ public disabledButton = signal<boolean>(this.projectForm().invalid);
  }
  
  openSnackBar(message: string): void {
-  console.log(message);
   this._snackBar.open(message,'', {
     horizontalPosition: 'center',
     verticalPosition: 'bottom',
@@ -99,7 +95,4 @@ public disabledButton = signal<boolean>(this.projectForm().invalid);
   });
  }
 
- get isActiveFormControl(): FormControl {
-  return this.projectForm()?.get('isActive') as FormControl;
- }
 }

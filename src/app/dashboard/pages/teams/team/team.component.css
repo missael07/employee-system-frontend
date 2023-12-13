@@ -1,0 +1,30 @@
+h2 {
+    background: #FB404B;
+    background: -moz-linear-gradient(top, #FB404B 0%, #bb0502 100%);
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0%, #FB404B),
+      color-stop(100%, #bb0502)
+    );
+    background: -webkit-linear-gradient(top, #FB404B 0%, #bb0502 100%);
+    background: -o-linear-gradient(top, #FB404B 0%, #bb0502 100%);
+    background: -ms-linear-gradient(top, #FB404B 0%, #bb0502 100%);
+    background: linear-gradient(to bottom, #FB404B 0%, #bb0502 100%);
+    background-size: 150% 150%;
+    color: #fff !important;
+  }
+  
+  mat-icon {
+    color: #fff !important;
+  }
+
+  mat-dialog-content{
+    width: 100vh;
+  }
+  .mat-mdc-form-field.select {
+    font-size: 14px;
+    width: 58%;
+    margin-left: 15px;
+  }

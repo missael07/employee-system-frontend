@@ -1,0 +1,57 @@
+<h2 mat-dialog-title class="title-container" data-color="azure">
+  <div class="text-title">
+    {{ title() }}
+  </div>
+  <div class="close-button">
+    <span>
+      <mat-icon mat-dialog-close align="end">close</mat-icon>
+    </span>
+  </div>
+</h2>
+<mat-dialog-content class="content">
+  <form [formGroup]="teamForm()" (submit)="save()">
+    <mat-form-field class="name">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="teamName" required />
+      <mat-error>
+        <span
+          errorLabel
+          [errors]="teamForm().get('teamName')?.errors"
+          field="Name"
+          *ngIf="teamForm().get('teamName')?.touched"
+        ></span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="select">
+      <mat-label>Select a Project</mat-label>
+      <mat-select formControlName="projectId">
+        <mat-option [value]="item._id" *ngFor="let item of projectList()">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+      <mat-error>
+        <span
+          errorLabel
+          [errors]="teamForm().get('projectId')?.errors"
+          field="Project"
+          *ngIf="teamForm().get('projectId')?.touched"
+        ></span>
+      </mat-error>
+    </mat-form-field>
+    <mat-checkbox formControlName="isActive">Is Active</mat-checkbox>
+
+  </form>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+  <div class="button-container float-end">
+    <button mat-dialog-close class="btn cancel" [disabled]="isSaving">
+      Cancel
+    </button>
+    <button (click)="save()" class="btn save" [disabled]="isSaving">
+      {{ buttonText() }}
+      <mat-icon *ngIf="isSaving">
+        <mat-spinner matSuffix diameter="20"></mat-spinner>
+      </mat-icon>
+    </button>
+  </div>
+</div>

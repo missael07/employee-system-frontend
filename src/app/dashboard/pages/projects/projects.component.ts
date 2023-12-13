@@ -20,32 +20,26 @@ export class ProjectsComponent {
   private _loadingService = inject(LoadingService);
   private _dialogService = inject(DialogService);
 
-  public isLoading = computed(() => this._loadingService.isLoading());
-
-  displayedColumns: string[] = ['name', 'isActive','createdDate', 'options'];
-  dataSource!: MatTableDataSource<Project>;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  // displayedColumns: string[] = ['name', 'isActive','createdDate', 'options'];
 
   constructor() {
     this.navService.setNavbarTitle('Projects');
-    this._setFilterConfig(0,10);
+    this._setFilterConfig(0,5);
     this._getProjectData();
   }
 
   search(searchValue: string) {
-    this._setFilterConfig(0,10,'createdAt','desc', searchValue)
+    this._setFilterConfig(0,5,'createdAt','desc', searchValue)
     this._getProjectData();
   }
 
   handlePageEvent(e: PageEvent) {
-    this._setFilterConfig(e.pageIndex,10)
+    this._setFilterConfig(e.pageIndex,5)
     this._getProjectData();
   }
 
   applySort(sortState: Sort){
-    this._setFilterConfig(0,10, sortState.active, sortState.direction !== 'asc' ? 'desc' : 'asc')
+    this._setFilterConfig(0,5, sortState.active, sortState.direction !== 'asc' ? 'desc' : 'asc')
     this._getProjectData();
   }
 
@@ -57,9 +51,8 @@ export class ProjectsComponent {
     })
   }
 
-  
- changeStatus(id: string, status: boolean) {
-    this._projectService.chanceStatus(id, status).subscribe({
+ changeStatus(data: {id: string, status: boolean}) {
+    this._projectService.chanceStatus(data.id, data.status).subscribe({
       next: () => {
         this._getProjectData();
       }
@@ -93,4 +86,29 @@ export class ProjectsComponent {
   get totalRows() {
     return this._projectService.totalRows();
   }
+
+  get displayedColumns() {
+    return [
+      {
+        name: 'name',
+        label: 'Name',
+        type: 'link',
+      },
+      {
+        name: 'createdAt',
+        label: 'Created Date',
+        type: 'date'
+      },
+      {
+        name: 'isActive',
+        label: 'Is Active',
+        type: 'question',
+      },
+      {
+        name: 'options',
+        label: '',
+        type: 'actions',
+      },
+    ]
+  };
 }

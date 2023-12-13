@@ -3851,6 +3851,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   /* background-size: 150% 150%; */
 
   color: black !important;  
+  margin-right: 10px;
 }
 
 .cancel:hover {
@@ -3882,4 +3883,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background: linear-gradient(to bottom, #888888 0%, #a7a4a4 100%);
   background-size: 150% 150%;
   color: #fff !important;
+  margin-right: 10px;
 }

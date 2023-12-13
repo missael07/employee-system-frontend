@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -46,7 +47,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatStepperModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatGridListModule
   ],
   exports: [
     MatToolbarModule,
@@ -72,7 +74,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatSelectModule,
     MatSortModule,
     MatCheckboxModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatGridListModule
   ],
 })
 export class MaterialModule {}
