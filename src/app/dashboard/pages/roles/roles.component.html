@@ -1,1 +1,18 @@
-<p>roles works!</p>
+<div class="container mt-2 content">
+    <app-filter
+      btnText="Add Role"
+      placeholder="Search by Role Name"
+      (searchEmitter)="search($event)"
+      (addEmitter)="addNewRole()"
+    />
+    <app-table-container
+      [displayedColumns]="displayedColumns"
+      [dataSource]="rolesList"
+      [totalRows]="totalRows"
+      (openDialogEmitter)="addNewRole($event)"
+      (pageIndexEmitter)="handlePageEvent($event)"
+      (sortEmitter)="applySort($event)"
+      (changeStatusEmitter)="changeStatus($event)"
+    />
+  </div>
+  

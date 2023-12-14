@@ -16,6 +16,7 @@ import { ProjectComponent } from './pages/projects/project/project.component';
 import { FilterComponent } from './components/shared/filter/filter.component';
 import { TableContainerComponent } from './components/shared/table-container/table-container.component';
 import { TeamComponent } from './pages/teams/team/team.component';
+import { RoleComponent } from './pages/roles/role/role.component';
 
 
 
@@ -31,7 +32,8 @@ import { TeamComponent } from './pages/teams/team/team.component';
     ProjectComponent,
     FilterComponent,
     TableContainerComponent,
-    TeamComponent
+    TeamComponent,
+    RoleComponent
   ],
   imports: [
     CommonModule,
