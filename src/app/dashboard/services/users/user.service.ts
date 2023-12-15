@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject, signal, computed } from '@angular/core';
 import { Observable, map, catchError, throwError } from 'rxjs';
 import { FilterConfig } from 'src/app/shared/interfaces/filter-config';
@@ -15,13 +15,18 @@ export class UserService {
   private readonly baseUrl: string = environment.baseUrl;
   private _usersList = signal<User[]>([]);
   private _totalRows = signal<number>(0);
+  private _token = signal<string|null>(localStorage.getItem('token'));
 
   public usersLists = computed( () => this._usersList());
   public totalRows = computed( () => this._totalRows());
   public filterConfig = signal<FilterConfig | null>(null)
 
   getUserPaginatedList(): Observable<boolean> {
-    return this._http.post<UserResponse>(`${this.baseUrl}/users/GetPaginatedUsers`, this.filterConfig()).pipe(
+
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${ this._token() }`);
+
+    return this._http.post<UserResponse>(`${this.baseUrl}/users/GetPaginatedUsers`, this.filterConfig(),{headers}).pipe(
       map( ({totalRows, data}) => this._setUsersList(totalRows, data)),
       catchError( err => throwError( () => err.error.message ))
     );
@@ -34,16 +39,26 @@ export class UserService {
   }
 
   createUser(user: any): Observable<User> {
-    return this._http.post<User>(`${this.baseUrl}/users`, user);
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${ this._token() }`);
+
+    return this._http.post<User>(`${this.baseUrl}/users`, user,{headers});
   }
   
   updateUser(id: string, user: any): Observable<User> {
-    return this._http.put<User>(`${this.baseUrl}/users/${id}`, user);
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${ this._token() }`);
+
+    return this._http.put<User>(`${this.baseUrl}/users/${id}`, user,{headers});
   }
 
   chanceStatus(id: string, status: boolean){
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${ this._token() }`);
+
     return this._http.delete<User>(`${this.baseUrl}/users/${id}`,{
-      body: {status}
+      body: {status},
+      headers
     });
   }
 }

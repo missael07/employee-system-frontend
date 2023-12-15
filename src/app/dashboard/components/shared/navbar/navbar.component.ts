@@ -1,4 +1,5 @@
 import { Component, ElementRef, computed, inject } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { NavbarTitleService } from 'src/app/dashboard/services/shared/navbar-title.service';
 
 @Component({
@@ -7,42 +8,14 @@ import { NavbarTitleService } from 'src/app/dashboard/services/shared/navbar-tit
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  title = computed(() => this.navbarTitleService.title());
-  private toggleButton: any;
-  private sidebarVisible: boolean = false;
 
-  constructor(
-    private navbarTitleService: NavbarTitleService,
-    private element: ElementRef
-  ) {}
+  private _navBarTitleService = inject(NavbarTitleService);
+  private _authService = inject(AuthService);
 
-  ngOnInit() {
-    const navbar: HTMLElement = this.element.nativeElement;
-    this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-  }
-  sidebarOpen() {
-    const toggleButton = this.toggleButton;
-    const body = document.getElementsByTagName('body')[0];
-    setTimeout(function () {
-      toggleButton.classList.add('toggled');
-    }, 500);
-    body.classList.add('nav-open');
+  title = computed(() => this._navBarTitleService.title());
 
-    this.sidebarVisible = true;
+  onLogout() {
+    this._authService.logout();
   }
-  sidebarClose() {
-    const body = document.getElementsByTagName('body')[0];
-    this.toggleButton.classList.remove('toggled');
-    this.sidebarVisible = false;
-    body.classList.remove('nav-open');
-  }
-  sidebarToggle() {
-    // const toggleButton = this.toggleButton;
-    // const body = document.getElementsByTagName('body')[0];
-    if (this.sidebarVisible === false) {
-      this.sidebarOpen();
-    } else {
-      this.sidebarClose();
-    }
-  }
+ 
 }
