@@ -26,6 +26,9 @@
           <div *ngSwitchCase="'parentProperty'">
             {{ element[item.name][item.parentProperty] }}
           </div>
+          <div *ngSwitchCase="'grandParentProperty'">
+            {{ element[item.parentProperty][item.name][item.childProperty] }}
+          </div>
           <div *ngSwitchCase="'date'">
             {{ element[item.name] | date : "MM/dd/yyyy" }}
           </div>

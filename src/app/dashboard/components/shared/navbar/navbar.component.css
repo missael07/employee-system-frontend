@@ -1,7 +1,8 @@
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 10px; /* Ajusta el relleno según tus preferencias */
-    z-index: 1000; /* Ajusta el índice z para que esté por encima de otros elementos */
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  mat-icon{
+    color:black !important;
   }

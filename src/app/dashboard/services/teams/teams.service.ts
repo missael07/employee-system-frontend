@@ -20,6 +20,9 @@ export class TeamsService {
   public totalRows = computed( () => this._totalRows());
   public filterConfig = signal<FilterConfig | null>(null)
 
+  getAllTeams(){
+    return this._http.get<Team[]>(`${this.baseUrl}/teams`);
+  }
 
   getTeamsList(): Observable<boolean> {
     return this._http.post<TeamResponse>(`${this.baseUrl}/teams/GetPaginatedTeams`, this.filterConfig()).pipe(

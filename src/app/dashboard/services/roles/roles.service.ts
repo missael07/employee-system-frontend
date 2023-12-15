@@ -22,24 +22,29 @@ export class RolesService {
   public filterConfig = signal<FilterConfig | null>(null)
 
 
+  getAllRoles(): Observable<Role[]>{
+    return this._http.get<Role[]>(`${this.baseUrl}/roles`);
+  }
+
   getRolesList(): Observable<boolean> {
     return this._http.post<RoleResponse>(`${this.baseUrl}/roles/GetPaginatedRoles`, this.filterConfig()).pipe(
       map( ({totalRows, data}) => this._setRolesList(totalRows, data)),
       catchError( err => throwError( () => err.error.message ))
     );
   }
+
   private _setRolesList(totalRows: number,rolesListResponse: Role[]){
     this._rolesList.set(rolesListResponse);
     this._totalRows.set(totalRows);
     return true;
   }
 
-  createRole(team: any): Observable<Role> {
-    return this._http.post<Role>(`${this.baseUrl}/roles`, team);
+  createRole(role: any): Observable<Role> {
+    return this._http.post<Role>(`${this.baseUrl}/roles`, role);
   }
   
-  updateRole(id: string, team: any): Observable<Role> {
-    return this._http.put<Role>(`${this.baseUrl}/roles/${id}`, team);
+  updateRole(id: string, role: any): Observable<Role> {
+    return this._http.put<Role>(`${this.baseUrl}/roles/${id}`, role);
   }
 
   chanceStatus(id: string, status: boolean){

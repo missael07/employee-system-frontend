@@ -49,6 +49,7 @@ export class ErrorLabelDirective implements OnInit{
     this.htmlElement.nativeElement.style.color = 'red';
     const errors = Object.keys(this._errors);
 
+    console.log(errors)
     if(errors.includes(Validators.required.name)){
       this.htmlElement.nativeElement.innerHTML = `${this._field} is required.`;
       return;
@@ -61,6 +62,7 @@ export class ErrorLabelDirective implements OnInit{
     }
 
     if(errors.includes(Validators.email.name)){
+      console.log(1)
       this.htmlElement.nativeElement.innerHTML = `${this._field} must be a valid email.`;
       return;
     }  

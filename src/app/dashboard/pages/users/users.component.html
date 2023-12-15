@@ -1,1 +1,17 @@
-<p>users works!</p>
+<div class="container mt-2 content">
+    <app-filter
+      btnText="Add User"
+      placeholder="Search by Name"
+      (searchEmitter)="search($event)"
+      (addEmitter)="openDialog()"
+    />
+    <app-table-container
+      [displayedColumns]="displayedColumns"
+      [dataSource]="usersList"
+      [totalRows]="totalRows"
+      (openDialogEmitter)="openDialog($event)"
+      (pageIndexEmitter)="handlePageEvent($event)"
+      (sortEmitter)="applySort($event)"
+      (changeStatusEmitter)="changeStatus($event)"
+    />
+  </div>
